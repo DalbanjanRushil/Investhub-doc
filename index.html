@@ -1,6 +1,172 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestHub – System Documentation</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-color: #f8f9fa;
+            --text-color: #343a40;
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 3px solid var(--primary-color);
+            padding: 20px 0;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        h2, h3 {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 5px;
+            margin-top: 30px;
+            color: var(--text-color);
+        }
+
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+
+        /* Table of Contents Styling */
+        nav {
+            position: sticky;
+            top: 20px;
+            float: left;
+            width: 250px;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+            font-size: 0.9rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: block;
+            padding: 5px 0;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .content {
+            margin-left: 270px;
+        }
+
+        /* Feature Boxes */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .feature-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-box h3 {
+            margin-top: 0;
+            border-bottom: none;
+            color: var(--primary-color);
+        }
+
+        /* Tables and Data Dictionary */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: var(--card-bg);
+        }
+
+        table th, table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Mermaid Diagram Container */
+        .mermaid {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+            text-align: center;
+        }
+
+        /* API Endpoints Styling */
+        .api-endpoint {
+            background-color: #e9ecef;
+            border-left: 4px solid var(--secondary-color);
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .api-endpoint strong {
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+
+        /* Clearfix for float */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+    </style>
   <meta charset="UTF-8">
   <title>InvestHub Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -301,246 +467,9 @@ b, strong { font-weight: 600; }
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
     mermaid.initialize({ startOnLoad: true });
   </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InvestHub – System Documentation</title>
-    <style>
-        :root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --background-color: #f8f9fa;
-            --text-color: #343a40;
-            --card-bg: #ffffff;
-            --border-color: #dee2e6;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--background-color);
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            background-color: var(--card-bg);
-            border-bottom: 3px solid var(--primary-color);
-            padding: 20px 0;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            margin: 0;
-            font-size: 2.5rem;
-        }
-
-        h2, h3 {
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 5px;
-            margin-top: 30px;
-            color: var(--text-color);
-        }
-
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.5rem; }
-
-        /* Table of Contents Styling */
-        nav {
-            position: sticky;
-            top: 20px;
-            float: left;
-            width: 250px;
-            padding: 15px;
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-right: 20px;
-            font-size: 0.9rem;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-color);
-            display: block;
-            padding: 5px 0;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        .content {
-            margin-left: 270px;
-        }
-
-        /* Feature Boxes */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .feature-box {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-left: 5px solid var(--primary-color);
-            padding: 20px;
-            border-radius: 6px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-        }
-
-        .feature-box h3 {
-            margin-top: 0;
-            border-bottom: none;
-            color: var(--primary-color);
-        }
-
-        /* Tables and Data Dictionary */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background-color: var(--card-bg);
-        }
-
-        table th, table td {
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            text-align: left;
-        }
-
-        table th {
-            background-color: var(--primary-color);
-            color: white;
-            font-weight: bold;
-        }
-
-        /* Mermaid Diagram Container */
-        .mermaid {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin: 20px 0;
-            overflow-x: auto;
-            text-align: center;
-        }
-
-        /* API Endpoints Styling */
-        .api-endpoint {
-            background-color: #e9ecef;
-            border-left: 4px solid var(--secondary-color);
-            padding: 10px 15px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        .api-endpoint strong {
-            color: var(--secondary-color);
-            margin-right: 10px;
-        }
-
-        /* Clearfix for float */
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
-    </style>
 </head>
 
 <body>
-  <button class="mobile-toggle" type="button">☰ Menu</button>
-  <div class="sidebar-backdrop"></div>
-  <div class="sidebar" id="investhub-sidebar" role="navigation" aria-label="Primary">
-    <h1>INVESTHUB</h1>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#flowchart">Flowchart</a></li>
-      <li><a href="#dfd">DFD</a></li>
-      <li><a href="#activity">Activity</a></li>
-      <li><a href="#sequence">Sequence</a></li>
-      <li><a href="#uml">UML</a></li>
-      <li><a href="#er">ER</a></li>
-      <li><a href="#usecase">Use Case</a></li>
-      <li><a href="#deployment">Deployment</a></li>
-      <li><a href="#components">Components</a></li>
-      <li><a href="#withdrawals">Withdrawals</a></li>
-      <li><a href="#datadictionary">Data Dictionary</a></li>
-      <li><a href="#api">API Endpoints</a></li>
-      <li><a href="#glossary">Glossary</a></li>
-    </ul>
-  </div>
-
-  <div class="content" id="content">
-    <section class="section" id="home">
-      <section class="hero">
-        <h2>InvestHub – System Documentation</h2>
-        <p>A fully simulated investment and finance learning platform with deposits, withdrawals, admin actions, real-time updates, and automated profit allocation.</p>
-      </section>
-
-      <section class="highlights">
-        <div class="card">
-          <h3>User Features</h3>
-          <ul>
-            <li>Deposit funds (Razorpay)</li>
-            <li>Track balance &amp; transactions</li>
-            <li>Request withdrawals</li>
-            <li>Choose compound/payout mode</li>
-            <li>Access learning content</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Admin Features</h3>
-          <ul>
-            <li>Approve/Reject withdrawals</li>
-            <li>Distribute profits</li>
-            <li>View platform performance</li>
-            <li>Upload content</li>
-            <li>Block or manage users</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>System Core</h3>
-          <ul>
-            <li>Secure authentication</li>
-            <li>Atomic database transactions</li>
-            <li>Real-time socket updates</li>
-            <li>Email notifications</li>
-            <li>Full audit transaction logs</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="quicklinks">
-        <h3>Jump To:</h3>
-        <div class="quick-buttons">
-          <a href="#flowchart">Flowchart</a>
-          <a href="#dfd">DFD</a>
-          <a href="#uml">UML</a>
-          <a href="#deployment">Deployment</a>
-          <a href="#api">API Docs</a>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({ startOnLoad: true });</script>
 
@@ -1048,7 +977,80 @@ b, strong { font-weight: 600; }
                     <li><strong>Profit Distribution:</strong> The manual Admin process of issuing earnings to users' accounts.</li>
                 </ul>
             </section>
+  <button class="mobile-toggle" type="button">☰ Menu</button>
+  <div class="sidebar-backdrop"></div>
+  <div class="sidebar" id="investhub-sidebar" role="navigation" aria-label="Primary">
+    <h1>INVESTHUB</h1>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#flowchart">Flowchart</a></li>
+      <li><a href="#dfd">DFD</a></li>
+      <li><a href="#activity">Activity</a></li>
+      <li><a href="#sequence">Sequence</a></li>
+      <li><a href="#uml">UML</a></li>
+      <li><a href="#er">ER</a></li>
+      <li><a href="#usecase">Use Case</a></li>
+      <li><a href="#deployment">Deployment</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#withdrawals">Withdrawals</a></li>
+      <li><a href="#datadictionary">Data Dictionary</a></li>
+      <li><a href="#api">API Endpoints</a></li>
+      <li><a href="#glossary">Glossary</a></li>
+    </ul>
+  </div>
+
+  <div class="content" id="content">
+    <section class="section" id="home">
+      <section class="hero">
+        <h2>InvestHub – System Documentation</h2>
+        <p>A fully simulated investment and finance learning platform with deposits, withdrawals, admin actions, real-time updates, and automated profit allocation.</p>
+      </section>
+
+      <section class="highlights">
+        <div class="card">
+          <h3>User Features</h3>
+          <ul>
+            <li>Deposit funds (Razorpay)</li>
+            <li>Track balance &amp; transactions</li>
+            <li>Request withdrawals</li>
+            <li>Choose compound/payout mode</li>
+            <li>Access learning content</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Admin Features</h3>
+          <ul>
+            <li>Approve/Reject withdrawals</li>
+            <li>Distribute profits</li>
+            <li>View platform performance</li>
+            <li>Upload content</li>
+            <li>Block or manage users</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>System Core</h3>
+          <ul>
+            <li>Secure authentication</li>
+            <li>Atomic database transactions</li>
+            <li>Real-time socket updates</li>
+            <li>Email notifications</li>
+            <li>Full audit transaction logs</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="quicklinks">
+        <h3>Jump To:</h3>
+        <div class="quick-buttons">
+          <a href="#flowchart">Flowchart</a>
+          <a href="#dfd">DFD</a>
+          <a href="#uml">UML</a>
+          <a href="#deployment">Deployment</a>
+          <a href="#api">API Docs</a>
 </div>
+    </div>
       </section>
     </section>
 
@@ -1538,6 +1540,5 @@ stateDiagram-v2
       }
     });
   </script>
-    </div>
 </body>
 </html>
